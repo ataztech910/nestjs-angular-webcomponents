@@ -1,0 +1,37 @@
+<div class="uk-modal-dialog uk-modal-body">
+    <h2 class="uk-modal-title">Create bot</h2>
+    <form 
+        hx-post="/statistics/add"
+        hx-target="#bot-list"
+    >
+        <div class="uk-margin">
+            <input class="uk-input" placeholder="Enter bot key">
+        </div>
+        <button type="submit" class="uk-button uk-button-primary" onclick="closeModal();">Save Changes</button>
+        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+    </form>
+    <div id="serious-errors"></div>
+</div>
+<script>
+    function isJson(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+    const closeModal = () => {
+        const modal = document.querySelector('#modal-example');
+        document.body.addEventListener('htmx:xhr:loadend', function (evt) {
+            const isError = isJson(evt.detail.serverResponse) ? JSON.parse(evt.detail.serverResponse) : false;
+            console.log(isError);
+            if (!isError) {
+                setTimeout(() => {
+                    modal.remove();
+                }, 0); 
+            }
+        });
+        
+    }
+</script>

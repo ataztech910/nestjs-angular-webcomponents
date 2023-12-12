@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
-  selector: 'fse-root',
+  selector: 'web-component',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class AppComponent {
-  title = 'client';
+  counter = 0;
+  incrementCount() {
+    this.counter ++;
+  }
 }

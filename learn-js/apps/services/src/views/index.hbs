@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="/web-component.css" />
+    
+    <title>HTMX Test</title>
+</head>
+<body>
+    <div class="uk-container">
+        <h1>This is a basic usage example</h1>
+        <div class="uk-child-width-expand@s uk-text-left" uk-grid>
+            <div id="bot-list" class="uk-card uk-card-default uk-card-body" hx-get="/statistics" hx-trigger="load">
+                Result loading...
+            </div>
+            <div class="uk-card uk-card-default uk-card-body" hx-get="/web-component/1" hx-trigger="load">
+                Result loading...
+            </div>
+            <div class="uk-card uk-card-default uk-card-body" hx-get="/web-component/2" hx-trigger="load">
+                Result loading...
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit-icons.min.js"></script>
+    <script src="/polyfills.js" type="module"></script>
+    <script src="/web-component.js" type="module"></script>
+</body>
+</html>

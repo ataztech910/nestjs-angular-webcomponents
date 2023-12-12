@@ -1,0 +1,33 @@
+<modal>
+    <div>
+        <h2>Regular Handlebars with data</h2>
+        <ul class="uk-nav uk-nav-default" uk-nav>
+        {{#each botList}}
+            <li class="uk-parent">
+                <li>
+                    <a href="#">
+                        <div>
+                            {{first_name}}
+                            <div class="uk-nav-subtitle">
+                                {{username}} | id: {{id}}
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </li>
+        {{/each}}
+        </ul>
+
+        <button 
+            id="showButton"
+            hx-get="/statistics/add" 
+            hx-target="#modal-example" 
+            class="uk-button uk-button-default uk-margin-small-right"
+            type="button"
+            uk-toggle="target: #modal-example"
+            onclick="UIkit.modal('.uk-modal').show();"
+            >Add bot</button>
+    </div>
+
+<div id="modal-example" uk-modal></div>
+</modal>

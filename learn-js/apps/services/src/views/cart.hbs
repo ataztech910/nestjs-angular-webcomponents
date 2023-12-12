@@ -1,0 +1,11 @@
+<div>
+    <a href="/shop/show-cart" hx-boost="true" class="uk-button uk-button-secondary">
+        Cart
+        <span class="uk-badge">{{count}}</span>
+    </a>
+    {{#if added}}
+    <div class="fixed hideMe">
+        Item added to cart
+    </div>
+    {{/if}}
+</div>

@@ -12,13 +12,14 @@
       "options": {
         "outputPath": "dist/apps/client",
         "index": "apps/client/src/index.html",
-        "browser": "apps/client/src/main.ts",
+        "browser": "apps/client/src/main-build.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/client/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
         "styles": ["apps/client/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "outputHashing": "none"
       },
       "configurations": {
         "production": {
@@ -34,7 +35,7 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "none"
         },
         "development": {
           "optimization": false,

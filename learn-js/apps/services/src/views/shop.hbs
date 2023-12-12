@@ -1,0 +1,64 @@
+
+<h1>Shop page</h1>
+    <div id="cart" class="uk-card uk-card-default uk-card-body" hx-get="/shop/cart" hx-trigger="load">
+    Cart loading...
+</div>
+
+<div class="carousel">
+    <a class="uk-button" href="#shuffle" hx-get="/shop/carousel" hx-target="#carousel">re-mix</a>
+   <carousel-component id="carousel" class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1"  uk-slider>
+    {{> carousel items=randomItems}}
+   </carousel-component>
+</div>
+
+ <ul class="uk-subnav uk-subnav-pill">
+    <li ><a href="#list" hx-get="/shop/show-list" hx-target="#itemsList">List</a></li>
+    <li><a href="#grid" hx-get="/shop/show-grid" hx-target="#itemsList">Grid</a></li>
+</ul>
+
+<div id="itemsList">
+    {{> itemsList items=items}}
+</div>
+
+<script>
+    class CarouselComponent extends HTMLElement {
+        constructor() {
+            super();
+            this.shadow = this.attachShadow({ mode: "open" });
+            this.updateShadow();
+        }
+        updateShadow(state=false) {
+            let template = document.getElementById("carousel-list");
+            let templateContent = template.content;
+            if (state) this.shadow.innerHTML = '';
+            console.log(templateContent.cloneNode(true))
+            this.shadow.appendChild(templateContent.cloneNode(true));
+            this.shadow.innerHTML = `
+            <style>
+                .uk-slider {
+                        display: flex;
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                }
+            </style>
+            <ul class="uk-slider">
+                ${this.shadow.innerHTML}
+            </ul>`;
+        }
+        connectedCallback() {
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.previousSibling?.className?.includes('uk-slider-items')) {
+                        this.updateShadow(true);
+                    }
+                });
+            });
+            observer.observe(this, { childList: true })
+        }
+    }
+
+    customElements.define("carousel-component", CarouselComponent);
+</script>
+
+

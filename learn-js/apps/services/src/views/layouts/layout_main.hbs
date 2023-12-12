@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="https://getuikit.com/css/theme.css?lp86y152" />
+    <title>HTMX Test</title>
+    <style>
+        .fixed {
+                z-index: 100;
+                position: fixed;
+                bottom: 0;
+                background: wheat;
+                width: 100%;
+                padding: 2rem;
+                left: 0;
+        }
+        .relative {
+            position: relative;
+        }
+        .hideMe {
+            -moz-animation: cssAnimation 0s ease-in 2s forwards;
+            /* Firefox */
+            -webkit-animation: cssAnimation 0s ease-in 2s forwards;
+            /* Safari and Chrome */
+            -o-animation: cssAnimation 0s ease-in 2s forwards;
+            /* Opera */
+            animation: cssAnimation 0s ease-in 2s forwards;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+        @keyframes cssAnimation {
+            to {
+                display: none;
+            }
+        }
+        @-webkit-keyframes cssAnimation {
+            to {
+               display: none;
+            }
+        }
+    </style>
+</head>
+<body hx-ext="head-support">
+<div class="uk-container relative">
+   {{{body}}}
+</div>
+
+<script src="https://unpkg.com/htmx.org@1.9.9"></script>
+<script src="https://unpkg.com/htmx.org/dist/ext/head-support.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit.min.js"></script>
+</body>
+</html>
